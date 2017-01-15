@@ -1,0 +1,38 @@
+<div flex layout="row" layout-align="center start" layout-margin layout-padding>
+    <div flex="90">
+        <md-card>
+            <md-table-container>
+                <table md-table multiple md-progress="promise">
+                    <thead md-head md-order="rlvc.query.order" md-on-reorder="rlvc.onReorder">
+                        <tr md-row>
+                            <th md-column md-order-by="title"><span>Title</span></th>
+                            <th md-column md-order-by="reminder"><span>Reminder</span></th>
+                            <th md-column md-order-by="time"><span>Time</span></th>
+                            <th md-column md-order-by="status"><span>Status</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="reminder" ng-repeat="reminder in rlvc.reminders | filter: rlvc.query_notes | orderBy: rlvc.query.order | limitTo: rlvc.query.limit : (rlvc.query.page -1) * rlvc.query.limit">
+                            <td md-cell>{{reminder.title}}</td>
+                            <td md-cell>{{reminder.reminder}}</td>
+                            <td md-cell>{{reminder.time}}</td>
+                            <td md-cell>
+                                <md-button ng-if="reminder.status === 'ACTIVE'" class="md-icon-button" aria-label="Toggle" ng-click="rlvc.onDoneClick(reminder)">
+                                    <md-icon class="action-icon">
+                                        <i class="material-icons action-icon">done</i>
+                                    </md-icon>
+                                </md-button>
+                                <md-button ng-if="reminder.status === 'DELETED'" class="md-icon-button" aria-label="Toggle" ng-click="rlvc.onDoneClick(reminder)">
+                                    <md-icon class="action-icon">
+                                        <i class="material-icons action-icon">delete</i>
+                                    </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="rlvc.query.limit" md-limit-options="rlvc.limitOptions" md-page="rlvc.query.page" md-total="{{rlvc.reminders.length}}" md-page-select md-boundary-links md-on-paginate="rlvc.onPaginationChange"></md-table-pagination>
+        </md-card>
+    </div>
+</div>

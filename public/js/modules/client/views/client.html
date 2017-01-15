@@ -1,0 +1,37 @@
+<div flex layout="column" layout-fill class="client">
+    <toolbar></toolbar>
+    <div flex layout="row">
+        <md-sidenav class="md-sidenav-left client_side_nav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+            <md-list flex>
+                <md-list-item class="md-1-line" ui-sref-active="active" ui-sref="client.notes.list_view">
+                    <i class="material-icons  mg_right_20">note</i>
+                    <div class="md-list-item-text cursor_pointer" layout="column" ui-sref-active="active" ui-sref="client.devices.list_view">
+                        Notes
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-1-line" ui-sref-active="active" ui-sref="client.reminders.list_view">
+                    <i class="material-icons mg_right_20">alarm</i>
+                    <div class="md-list-item-text cursor_pointer" layout="column" ui-sref-active="active" ui-sref="client.reminders">
+                        Reminders
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <!-- Implementation is on you!!-->
+                <md-list-item class="md-1-line" layout="row">
+                    <i class="material-icons mg_right_20">settings</i>
+                    <div class="md-list-item-text cursor_pointer" layout="column">
+                        Settings
+                    </div>
+                </md-list-item>
+            </md-list>
+            <div class="center_align" layout-margin layout-padding>
+                <div>
+                    <span style="font-size:14px; color:grey;">MIT License</span>
+                </div>
+            </div>
+        </md-sidenav>
+        <md-content md-scroll-y flex layout="row" class="transparent">
+            <ui-view flex></ui-view>
+        </md-content>
+    </div>
+</div>

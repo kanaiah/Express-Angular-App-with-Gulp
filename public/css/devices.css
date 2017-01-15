@@ -1,0 +1,30 @@
+.iot_devices_list img {
+	height:170px;
+	width:260px;
+}
+
+.iot_devices_list .single_device {
+	/*border:1px solid black;*/
+	cursor:pointer;
+	border:3px solid transparent;
+}
+
+.iot_devices_list .single_device:hover {
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)
+}
+
+.iot_devices_list .single_device .name {
+	font-size:16px;
+	font-weight:200;
+	margin-top:18px;
+}
+
+.iot_devices_list .single_device.active {
+	border:3px solid #4FA29A;
+	border-radius:4px;
+}
+
+.step_2 .download_hex_msg {
+	font-size:18px;
+	opacity:0.87;
+}

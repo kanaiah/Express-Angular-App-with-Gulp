@@ -1,0 +1,13 @@
+md-sidenav.client_side_nav {
+	max-width:280px;
+}
+
+md-sidenav.client_side_nav md-list-item {
+	border-left:6px solid rgba(255, 255, 255, 0);
+}
+
+md-sidenav.client_side_nav md-list-item.active {
+	border-left:6px solid #1E88E5;
+	background:rgba(30, 136, 229, 0.08);
+	color:blue;
+}

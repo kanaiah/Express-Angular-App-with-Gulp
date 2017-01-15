@@ -1,0 +1,58 @@
+<div layout="row" flex layout-align="center start" class="step_3 mg_top_20" layout-margin>
+    <div flex="90" layout="column">
+        <div class="md-whiteframe-1dp bg_white" layout="column">
+            <div class="pd_left_20 pd_right_20">
+                <h3>Verify your Device:</h3>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" layout-align="space-around center" style="margin:30px 0px 60px 0px">
+                <div layout="column" flex>
+                    <div flex class="mg_20" layout="row" layout-align="center center">
+                        We have detected the following list of devices in your network. Ping to verify your device.
+                        The LED on your device will glow, once you ping your device.
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <div flex="70" layout="row" class="mg_top_20"
+                             style="border:1px solid rgba(79, 162, 154, 0.5);border-radius:4px;">
+                            <md-radio-group flex ng-model="data.group1">
+                                <div flex layout="row">
+                                    <div layout="row" layout-align="start center" layout-padding>
+                                        <md-radio-button value="80:90:A3:F6:09:80" class="md-primary">
+                                            1) 80:90:A3:F6:09:80
+                                        </md-radio-button>
+                                    </div>
+                                    <span flex></span>
+                                    <div>
+                                        <md-button class="md-raised md-accent md-hue-1">Ping</md-button>
+                                    </div>
+                                </div>
+                                <md-divider></md-divider>
+                                <div flex layout="row" layout-align="start center">
+                                    <div layout="row" layout-align="start center" layout-padding>
+                                        <md-radio-button value="7B:90:A3:D7:90:18" class="md-primary">
+                                            2) 7B:90:A3:D7:90:18
+                                        </md-radio-button>
+                                    </div>
+                                    <span flex></span>
+                                    <div>
+                                        <md-button class="md-raised md-accent md-hue-1">Ping</md-button>
+                                    </div>
+                                </div>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" class="pd_12">
+                <div>
+                    <md-button class="md-raised" ui-sref="client.devices.add.step_2">Back</md-button>
+                </div>
+                <span flex></span>
+                <div>
+                    <md-button class="md-raised md-accent" ui-sref="client.devices.list_view">Finish</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

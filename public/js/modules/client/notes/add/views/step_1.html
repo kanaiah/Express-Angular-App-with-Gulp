@@ -1,0 +1,61 @@
+<div layout="row" flex layout-align="center start" class="iot_devices_list mg_top_20" layout-margin>
+    <div flex="90" layout="column">
+        <div class="md-whiteframe-1dp bg_white" layout="column">
+            <div class="pd_left_20 pd_right_20" >
+                <h3>Select the IOT Device:</h3>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" layout-align="space-around center" style="margin:60px 0px">
+                <div layout="row" flex layout-align="center center">
+                    <div layout="column" flex="60" class="single_device mg_20 pd_8" layout-align="space-around center"
+                         ng-click="step1Ctrl.selected_device_type = step1Ctrl.device_type.AWS_IOT"
+                         ng-class="{active: step1Ctrl.device_type.AWS_IOT === step1Ctrl.selected_device_type}">
+                        <div layout="row" layout-align="center center">
+                            <img src="/assets/images/aws_iot_device.png"/>
+                        </div>
+                        <div layout="row" layout-align="center center" class="name">
+                            AWS IOT Device
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" flex layout-align="center center">
+                    <div layout="column" flex="60" class="single_device mg_20 pd_8" layout-align="space-around center"
+                         ng-click="step1Ctrl.selected_device_type = step1Ctrl.device_type.RASP_PI"
+                         ng-class="{active: step1Ctrl.device_type.RASP_PI === step1Ctrl.selected_device_type}">
+                        <div layout="row" layout-align="center center">
+                            <img src="/assets/images/rasp_pi.png"/>
+                        </div>
+                        <div layout="row" layout-align="center center" class="name">
+                            Raspberry Pi
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" flex layout-align="center center">
+                    <div layout="column" flex="60" class="single_device mg_20 pd_8" layout-align="space-around center"
+                         ng-click="step1Ctrl.selected_device_type = step1Ctrl.device_type.TI_IOT"
+                         ng-class="{active: step1Ctrl.device_type.TI_IOT === step1Ctrl.selected_device_type}">
+                        <div layout="row" layout-align="center center">
+                            <img src="/assets/images/ti_iot_device.png"/>
+                        </div>
+                        <div layout="row" layout-align="center center" class="name">
+                            TI's IOT Device
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" class="pd_12">
+                <span flex></span>
+                <div>
+                    <md-button class="md-raised md-accent" ui-sref="client.devices.add.step_2">Next</md-button>
+                </div>
+            </div>
+            <!--<div layout="row" layout-margin class="margin_top_20" style="margin-top:120px;">-->
+                <!--<span flex></span>-->
+                <!--<div>-->
+                    <!--<md-button class="md-raised md-primary" ui-sref="client.devices.add.step_2">Next</md-button>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>

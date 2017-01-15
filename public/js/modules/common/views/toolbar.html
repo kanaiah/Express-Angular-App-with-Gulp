@@ -1,0 +1,37 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <span>Demo App</span>
+        <span flex></span>
+        <div layout="row" layout-align="center center" ns-popover ns-popover-timeout="-1"
+             ns-popover-template="account_popover" ns-popover-trigger="click" ng-if="!toolbarCtrl.hideAccountPopOver"
+             ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme">
+            <i class="material-icons person_icon cursor_pointer">account_circle</i>
+        </div>
+        <script type="text/ng-template" id="account_popover">
+            <div class="triangle"></div>
+            <div class="ns-popover-tooltip account_popover" md-whiteframe="1" layout="column">
+                <div flex layout="column" class="row_1">
+                    <div flex class="name">
+                        {{name}}
+                    </div>
+                    <div flex class="email">
+                        {{email}}
+                    </div>
+                </div>
+                <div flex class="row_2">
+                    <md-divider></md-divider>
+                </div>
+                <div flex class="row_3">
+                    <ul>
+                        <li ng-if="UserDetailsService.isRootSuperAdmin()">
+                            <a ui-sref="admin.locks" href="" ng-click="hidePopover()">Update Firmware</a>
+                        </li>
+                        <li>
+                            <a href="/logout" ng-click="hidePopover()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </script>
+    </div>
+</md-toolbar>

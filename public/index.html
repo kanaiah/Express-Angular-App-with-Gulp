@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/" target="_self">
+    <title>Express Angular App with Gulp Demo</title>
+    <!-- build:css css/lib.min.css -->
+    <link rel="stylesheet" href="./../node_modules/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" href="./../node_modules/angular-material-data-table/dist/md-data-table.min.css" />
+    <link rel="stylesheet" href="./css/material-icons.css">
+    <link rel="stylesheet" href="./vendor/css/nsPopover.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <!-- endbuild -->
+
+    <!-- build:css css/app.min.css -->
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/devices.css">
+    <link rel="stylesheet" href="./css/client.css">
+    <!-- endbuild -->
+    <!--    <link rel="stylesheet" href="./css/client.css">-->
+</head>
+
+<body class="docs_body" ng-strict-di layout="row" ng-cloak>
+    <ui-view flex layout="row"></ui-view>
+
+    <!-- build:js js/lib.min.js -->
+    <script src="./../node_modules/angular/angular.min.js"></script>
+    <script src="./../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="./../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="./../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="./../node_modules/angular-material/angular-material.min.js"></script>
+    <script src="./../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./../node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="./vendor/js/nsPopover.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/app.min.js -->
+    <script src="./js/app.js"></script>
+    <script src="./js/controllers/app_controller.js"></script>
+    <script src="./js/constants/cookies.js"></script>
+    <script src="./js/constants/device_type.js"></script>
+    <script src="./js/constants/endpoint.js"></script>
+    <script src="./js/constants/user_roles.js"></script>
+
+    <script src="./js/modules/client/config.js"></script>
+    <script src="./js/modules/client/controllers/client_controller.js"></script>
+
+    <script src="./js/modules/client/notes/config.js"></script>
+    <script src="./js/modules/client/notes/controllers/list_view_controller.js"></script>
+    <script src="./js/modules/client/notes/services/notes_services.js"></script>
+
+    <script src="./js/modules/client/notes/add/config.js"></script>
+    <script src="./js/modules/client/notes/add/controllers/step_1_controller.js"></script>
+
+
+    <script src="./js/modules/client/reminders/config.js"></script>
+    <script src="./js/modules/client/reminders/services/reminders_service.js"></script>
+    <script src="./js/modules/client/reminders/controllers/list_view_controller.js"></script>
+    <script src="./js/modules/client/reminders/services/user_details_service.js"></script>
+
+    <script src="./js/modules/login/config.js"></script>
+    <script src="./js/modules/login/controllers/login_controller.js"></script>
+    <script src="./js/modules/login/controllers/logout_controller.js"></script>
+
+
+    <script src="./js/modules/common/config.js"></script>
+    <script src="./js/modules/common/constants/states.js"></script>
+    <script src="./js/modules/common/controllers/toolbar_controller.js"></script>
+    <script src="./js/modules/common/directives/toolbar.js"></script>
+    <!-- endbuild -->
+
+    <script type="text/javascript">
+        (function() {
+            var interval = 200;
+            var userDataFetchComplete = false;
+            var myApplication = angular.module("appModule");
+
+            fetchData();
+
+            function fetchData() {
+                var initInjector = angular.injector(["ng"]);
+                var $http = initInjector.get("$http");
+
+                return $http.get("/test").then(function(response) {
+                    var data = {
+                        "user": {
+                            "id": "586651f6d318a60008db1d45",
+                            "email": "support",
+                            "firstName": "Super",
+                            "lastName": "Admin",
+                            "role": "ADMIN",
+                            "scopeId": "586651f6d318a60008db1d43",
+                            "owner": true,
+                            "status": "ACTIVE"
+                        },
+                        "permissions": ["IOT_DEVICE_READ", "IOT_DEVICE_WRITE", "IOT_DEVICE_BULK_WRITE", "IOT_USER_READ", "IOT_USER_WRITE", "GATEWAY_READ", "GATEWAY_WRITE", "GATEWAY_INSTRUCTIONS_READ", "GATEWAY_INSTRUCTIONS_WRITE", "GATEWAY_DATABASE_RESET", "IOT_SERVICE_DATABASE_RESET", "GATEWAY_SERVICE_DATABASE_RESET", "APP_DETAILS", "ALERTS_READ", "ALERTS_WRITE"],
+                        "isRootUser": true
+                    };
+                    myApplication.constant("UserDetails", data);
+                    userDataFetchComplete = true;
+                }, function(errorResponse) {
+                    if (errorResponse.status === 401) {
+                        var abc = {};
+                        abc.xyz = "test";
+                        console.log("user details");
+                        myApplication.service("UserDetails", abc);
+                        userDataFetchComplete = true;
+
+                    } else {
+                    }
+                });
+            }
+
+            angular.element(document).ready(function() {
+                bootstrapApplication();
+            });
+
+            function bootstrapApplication() {
+                console.log(userDataFetchComplete);
+                if (userDataFetchComplete) {
+                    console.log("finally bootstrapping...");
+                    angular.bootstrap(document, ["appModule"]);
+                } else {
+                    console.log("timeout.." + interval);
+                    setTimeout(function() {
+                        console.log("inside timeout..");
+                        bootstrapApplication();
+                    }, interval);
+                }
+            }
+        }());
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<div flex layout="row" layout-align="center start" layout-margin layout-padding>
+    <div flex="90">
+        <md-card>
+            <md-table-container>
+                <table md-table multiple md-progress="promise">
+                    <thead md-head md-order="nlvc.query.order" md-on-reorder="nlvc.onReorder">
+                        <tr md-row>
+                            <th md-column md-order-by="title"><span>Title</span></th>
+                            <th md-column md-order-by="note"><span>Note</span></th>
+                            <th md-column md-order-by="time"><span>Time</span></th>
+                            <th md-column md-order-by="status"><span>Status</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="note" ng-repeat="note in nlvc.notes | filter: nlvc.query_notes | orderBy: nlvc.query.order | limitTo: nlvc.query.limit : (nlvc.query.page -1) * nlvc.query.limit">
+                            <td md-cell>{{note.title}}</td>
+                            <td md-cell>{{note.note}}</td>
+                            <td md-cell>{{note.time}}</td>
+                            <td md-cell>
+                                <md-button ng-if="note.status === 'ACTIVE'" class="md-icon-button" aria-label="Toggle" ng-click="nlvc.onDoneClick(note)">
+                                    <md-icon class="action-icon">
+                                        <i class="material-icons action-icon">done</i>
+                                    </md-icon>
+                                </md-button>
+                                <md-button ng-if="note.status === 'DELETED'" class="md-icon-button" aria-label="Toggle" ng-click="nlvc.onDoneClick(note)">
+                                    <md-icon class="action-icon">
+                                        <i class="material-icons action-icon">delete</i>
+                                    </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="nlvc.query.limit" md-limit-options="nlvc.limitOptions" md-page="nlvc.query.page" md-total="{{nlvc.notes.length}}" md-page-select md-boundary-links md-on-paginate="nlvc.onPaginationChange"></md-table-pagination>
+        </md-card>
+    </div>
+</div>
