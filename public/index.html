@@ -31,6 +31,7 @@
     <script src="./../node_modules/angular-material/angular-material.min.js"></script>
     <script src="./../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="./../node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="./../node_modules/angular-cookies/angular-cookies.min.js"></script>
     <script src="./vendor/js/nsPopover.min.js"></script>
     <!-- endbuild -->
 
@@ -56,7 +57,6 @@
     <script src="./js/modules/client/reminders/config.js"></script>
     <script src="./js/modules/client/reminders/services/reminders_service.js"></script>
     <script src="./js/modules/client/reminders/controllers/list_view_controller.js"></script>
-    <script src="./js/modules/client/reminders/services/user_details_service.js"></script>
 
     <script src="./js/modules/login/config.js"></script>
     <script src="./js/modules/login/controllers/login_controller.js"></script>
@@ -65,6 +65,7 @@
 
     <script src="./js/modules/common/config.js"></script>
     <script src="./js/modules/common/constants/states.js"></script>
+    <script src="./js/modules/common/services/user_details_service.js"></script>
     <script src="./js/modules/common/controllers/toolbar_controller.js"></script>
     <script src="./js/modules/common/directives/toolbar.js"></script>
     <!-- endbuild -->
@@ -80,35 +81,55 @@
             function fetchData() {
                 var initInjector = angular.injector(["ng"]);
                 var $http = initInjector.get("$http");
+                
+                myApplication.constant("UserDetails", {});
+                userDataFetchComplete = true;
+                // make the request to get user details and create constant
+                // return $http.get("/test").then(function(response) {
+                //     myApplication.constant("UserDetails", data);
+                //     userDataFetchComplete = true;
+                // }, function(error) {
+                //     myApplication.constant("UserDetails", data);
+                //     userDataFetchComplete = true;
+                // });
+                // var data = cookies.get("user");
+                // if (data) {
+                //     myApplication.constant("UserDetails", data);
+                //     userDataFetchComplete = true;
+                // } else {
+                //     myApplication.constant("UserDetails", {});
+                //     userDataFetchComplete = true;
+                // }
 
-                return $http.get("/test").then(function(response) {
-                    var data = {
-                        "user": {
-                            "id": "586651f6d318a60008db1d45",
-                            "email": "support",
-                            "firstName": "Super",
-                            "lastName": "Admin",
-                            "role": "ADMIN",
-                            "scopeId": "586651f6d318a60008db1d43",
-                            "owner": true,
-                            "status": "ACTIVE"
-                        },
-                        "permissions": ["IOT_DEVICE_READ", "IOT_DEVICE_WRITE", "IOT_DEVICE_BULK_WRITE", "IOT_USER_READ", "IOT_USER_WRITE", "GATEWAY_READ", "GATEWAY_WRITE", "GATEWAY_INSTRUCTIONS_READ", "GATEWAY_INSTRUCTIONS_WRITE", "GATEWAY_DATABASE_RESET", "IOT_SERVICE_DATABASE_RESET", "GATEWAY_SERVICE_DATABASE_RESET", "APP_DETAILS", "ALERTS_READ", "ALERTS_WRITE"],
-                        "isRootUser": true
-                    };
-                    myApplication.constant("UserDetails", data);
-                    userDataFetchComplete = true;
-                }, function(errorResponse) {
-                    if (errorResponse.status === 401) {
-                        var abc = {};
-                        abc.xyz = "test";
-                        console.log("user details");
-                        myApplication.service("UserDetails", abc);
-                        userDataFetchComplete = true;
 
-                    } else {
-                    }
-                });
+                // return $http.get("/test").then(function(response) {
+                //     var data = {
+                //         "user": {
+                //             "id": "586651f6d318a60008db1d45",
+                //             "email": "support",
+                //             "firstName": "Super",
+                //             "lastName": "Admin",
+                //             "role": "ADMIN",
+                //             "scopeId": "586651f6d318a60008db1d43",
+                //             "owner": true,
+                //             "status": "ACTIVE"
+                //         },
+                //         "permissions": ["IOT_DEVICE_READ", "IOT_DEVICE_WRITE", "IOT_DEVICE_BULK_WRITE", "IOT_USER_READ", "IOT_USER_WRITE", "GATEWAY_READ", "GATEWAY_WRITE", "GATEWAY_INSTRUCTIONS_READ", "GATEWAY_INSTRUCTIONS_WRITE", "GATEWAY_DATABASE_RESET", "IOT_SERVICE_DATABASE_RESET", "GATEWAY_SERVICE_DATABASE_RESET", "APP_DETAILS", "ALERTS_READ", "ALERTS_WRITE"],
+                //         "isRootUser": true
+                //     };
+                //     myApplication.constant("UserDetails", data);
+                //     userDataFetchComplete = true;
+                // }, function(errorResponse) {
+                //     if (errorResponse.status === 401) {
+                //         var abc = {};
+                //         abc.xyz = "test";
+                //         console.log("user details");
+                //         myApplication.service("UserDetails", abc);
+                //         userDataFetchComplete = true;
+                //
+                //     } else {
+                //     }
+                // });
             }
 
             angular.element(document).ready(function() {
@@ -116,7 +137,6 @@
             });
 
             function bootstrapApplication() {
-                console.log(userDataFetchComplete);
                 if (userDataFetchComplete) {
                     console.log("finally bootstrapping...");
                     angular.bootstrap(document, ["appModule"]);
@@ -129,7 +149,6 @@
                 }
             }
         }());
-
     </script>
 </body>
 

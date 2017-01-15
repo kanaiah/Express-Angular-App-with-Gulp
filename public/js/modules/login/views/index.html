@@ -1,17 +1,11 @@
 <md-content flex layout="row" class="transparent">
     <div flex layout="column" layout-fill>
-        <!--<toolbar></toolbar>-->
-        <!--<div flex layout="row">-->
-        <!--<md-button flex ng-click="loginCtrl.onClick()">login</md-button>-->
-        <!--</div>-->
-
         <style>
             .loginBox {
-                max-width:  90%;
+                max-width: 90%;
                 width: 500px
             }
         </style>
-
         <!-- Using Angular Material 6.1 + Jade Templates-->
         <div layout="column" layout-align="center center" layout-fill="layout-fill">
             <div class="loginBox md-whiteframe-z1" layout="column">
@@ -21,17 +15,15 @@
                 <md-content class="md-padding" layout="column">
                     <md-input-container>
                         <label>Email Id</label>
-                        <input type="email" ng-model="username"/>
+                        <input type="email" ng-model="loginCtrl.username" />
                     </md-input-container>
                     <md-input-container>
                         <label>Password</label>
-                        <input type="password" ng-model="password"/>
+                        <input type="password" ng-model="loginCtrl.password" />
                     </md-input-container>
                     <div layout="row" layout-align="center center">
                         <div flex="flex"></div>
                         <md-button class="md-raised md-primary" ng-click="loginCtrl.onClick()">Login</md-button>
-
-                        <!--<md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button>-->
                     </div>
                 </md-content>
             </div>

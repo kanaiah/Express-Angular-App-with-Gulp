@@ -1,26 +1,23 @@
-login.controller('LoginController', ['$scope', '$state', 'States',
-    function($scope, $state, States) {
+login.controller('LoginController', ['$scope', '$state', 'States', '$log', '$mdToast', 'UserDetailsService',
+    function($scope, $state, States, $log, $mdToast, UserDetailsService) {
+        var self = this;
+        self.username = "";
+        self.password = "";
 
         this.onClick = function() {
-            var data = {
-                "user": {
-                    "id": "586651f6d318a60008db1d45",
-                    "email": "support",
-                    "firstName": "Super",
-                    "lastName": "Admin",
-                    "role": "ADMIN",
-                    "scopeId": "586651f6d318a60008db1d43",
-                    "owner": true,
-                    "status": "ACTIVE"
-                },
-                "permissions": ["IOT_DEVICE_READ", "IOT_DEVICE_WRITE", "IOT_DEVICE_BULK_WRITE", "IOT_USER_READ", "IOT_USER_WRITE", "GATEWAY_READ", "GATEWAY_WRITE", "GATEWAY_INSTRUCTIONS_READ", "GATEWAY_INSTRUCTIONS_WRITE", "GATEWAY_DATABASE_RESET", "IOT_SERVICE_DATABASE_RESET", "GATEWAY_SERVICE_DATABASE_RESET", "APP_DETAILS", "ALERTS_READ", "ALERTS_WRITE"],
-                "isRootUser": true
-            };
-            // UserDetailsService.setUserDetails(data);
-            $state.go(States.ROOT);
+            if (self.username === "admin@test.com" && self.password === "mypassword") {
+                var details = {};
+                details.name = "Admin";
+                details.id = 1;
+                UserDetailsService.setUserDetails(details);
+                $state.go(States.ROOT);
+            } else {
+                var toast = $mdToast.simple()
+                    .textContent('Incorrect Username or Password')
+                    .position('top right')
+                    .hideDelay(2000);
+                $mdToast.show(toast);
+            }
         };
-        //app.value('UserDetails', data);
-        //console.log(UserDetails);
-
     }
 ]);
